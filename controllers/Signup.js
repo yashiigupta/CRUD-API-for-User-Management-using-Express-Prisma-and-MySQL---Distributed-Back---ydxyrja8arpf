@@ -1,7 +1,5 @@
-const { PrismaClient } = require("@prisma/client");
+const { prisma } = require('../db/config.js');
 const bcrypt = require('bcrypt');
-
-const prisma = new PrismaClient();
 
 async function Signup(req, res) {
   try {

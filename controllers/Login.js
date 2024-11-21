@@ -1,7 +1,6 @@
-const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
-const prisma = new PrismaClient();
+const { prisma } = require('../db/config.js');
 
 dotenv.config();
 
