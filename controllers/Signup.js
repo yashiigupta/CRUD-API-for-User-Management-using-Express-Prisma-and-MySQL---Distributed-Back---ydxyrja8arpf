@@ -8,7 +8,7 @@ async function Signup(req, res) {
         "error": "Email is required"
       })
     }
-    const isThere = await prisma.Users.findUnique({
+    const isThere = await prisma.user.findUnique({
       where: {
         email: req.body.email
       }
@@ -19,7 +19,7 @@ async function Signup(req, res) {
       })
     }
     const hashedPass = await bcrypt.hash(req.body.password, 10);
-    const user = await prisma.Users.create({
+    const user = await prisma.user.create({
       data: {
         name: req.body.name,
         email: req.body.email,

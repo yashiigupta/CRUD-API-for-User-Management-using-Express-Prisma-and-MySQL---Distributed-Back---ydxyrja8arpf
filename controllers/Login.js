@@ -11,7 +11,7 @@ async function Login(req, res) {
         "error": "Email and password are required"
       })
     }
-    const isThere = await prisma.Users.findUnique({
+    const isThere = await prisma.user.findUnique({
       where: {
         email: req.body.email,
       }
