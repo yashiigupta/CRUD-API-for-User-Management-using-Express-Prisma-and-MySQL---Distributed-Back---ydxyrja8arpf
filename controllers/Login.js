@@ -31,9 +31,9 @@ async function Login(req, res) {
       "userdata": {
         "id": isThere.id,
         "name": isThere.name,
-        "email": isThere.email
-      },
-      "accesstoken": process.env.JWT_TOKEN
+        "email": isThere.email,
+        "accesstoken": process.env.JWT_TOKEN
+      }
     })
   }
   catch(err) {
