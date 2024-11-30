@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 const { prisma } = require('../db/config.js');
 
 dotenv.config();
@@ -27,13 +28,14 @@ async function Login(req, res) {
         "error": "Invalid credentials"
       })
     }
+    var token = jwt.sign(isThere, process.env.JWT_SECRET);
     return res.status(200).json({
       "userdata": {
         "id": isThere.id,
         "name": isThere.name,
-        "email": isThere.email,
-        "accesstoken": process.env.JWT_TOKEN
-      }
+        "email": isThere.email
+      },
+      "accesstoken": token
     })
   }
   catch(err) {
