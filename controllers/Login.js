@@ -28,7 +28,11 @@ async function Login(req, res) {
         "error": "Invalid credentials"
       })
     }
-    var token = jwt.sign(isThere, process.env.JWT_SECRET);
+    var token = jwt.sign({
+      userId: isThere.id,
+      name: isThere.name,
+      email: isThere.email
+    }, process.env.JWT_SECRET);
     return res.status(200).json({
       "userdata": {
         "id": isThere.id,
