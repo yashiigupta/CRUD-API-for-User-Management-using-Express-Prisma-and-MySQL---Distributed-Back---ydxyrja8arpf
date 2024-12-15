@@ -43,7 +43,6 @@ app.post("/api/auth/signup", async (req, res) => {
 app.post("/api/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const jwtToken = process.env.JWT_TOKEN;
     if(!email || !password) {
       return res.status(400).json({ "error": "Email and password are required" });
     }
@@ -60,7 +59,7 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(401).json({ "error": "Invalid credentials" });
     }
 
-    const accesstoken = jwt.sign({ id: isThere.id, name: isThere.name, email }, jwtToken);
+    const accesstoken = jwt.sign({ id: isThere.id, name: isThere.name, email }, "68d97a7b7965450091cd86a139a66caaca857c05511860b11b0064e388ba105328de791c8336dd7561f52ea7f2fa64f2d09810cfea12978b571cdceab05270b");
     return res.status(200).json({ "userdata": { "id": isThere.id, "name": isThere.name, email }, accesstoken });
   }
   catch(err) {
