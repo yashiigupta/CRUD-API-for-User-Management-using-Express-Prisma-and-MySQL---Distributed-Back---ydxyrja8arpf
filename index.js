@@ -16,7 +16,7 @@ app.post("/api/auth/signup", async (req, res) => {
     if(!email || !password) {
       return res.status(400).json({ "error": "Email is required" });
     }
-    const isThere = await prisma.users.findUnique({
+    const isThere = await prisma.user.findUnique({
       where: {
         email: email
       }
@@ -25,7 +25,7 @@ app.post("/api/auth/signup", async (req, res) => {
       return res.status(400).json({ "error": "Email already in use" });
     }
     const hashedPass = await bcrypt.hash(password, 10);
-    const user = await prisma.users.create({
+    const user = await prisma.user.create({
       data: {
         name: name,
         email: email,
@@ -47,7 +47,7 @@ app.post("/api/auth/login", async (req, res) => {
     if(!email || !password) {
       return res.status(400).json({ "error": "Email and password are required" });
     }
-    const isThere = await prisma.users.findUnique({
+    const isThere = await prisma.user.findUnique({
       where: {
         email: email
       }
